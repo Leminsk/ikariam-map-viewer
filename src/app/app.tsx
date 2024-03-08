@@ -1,12 +1,6 @@
-import styled from 'styled-components';
-import { Segment, Menu, MenuItem, Button } from 'semantic-ui-react';
+import { Segment, Container, Grid, Menu, MenuItem, Button } from 'semantic-ui-react';
 
 import { useState } from 'react';
-
-// const StyledApp = styled.div`
-//   // Your style here
-//   background-color: #1050A0;
-// `;
 
 const TitleStyle = {
   marginLeft: '20%',
@@ -23,9 +17,7 @@ const TextBodyStyle = {
   marginBottom: '5%',
 }
 
-const FilterMenuStyle = {
-  marginLeft: '40%',
-  marginRight: '40%',
+const FilterMenuStyle = {  
   marginBottom: '2%'
 }
 
@@ -51,28 +43,33 @@ export function App() {
       <Segment style={TextBodyStyle}>
         Mussum Ipsum, cacilds vidis litro abertis.  Casamentiss faiz malandris se pirulitá. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Per aumento de cachacis, eu reclamis. Quem num gosta di mim que vai caçá sua turmis!
       </Segment>
-
-      <Menu compact width={3} style={FilterMenuStyle}>
-        <MenuItem header>FILTER:</MenuItem>
-        <MenuItem
-          name='geographic'
-          active={mapFilter === 'geographic'}
-          onClick={() => setMapFilter('geographic')}
-          // style={FilterItemStyle}
-        />
-        <MenuItem 
-          name='luxury'
-          active={mapFilter === 'luxury'}
-          onClick={() => setMapFilter('luxury')}
-          // style={FilterItemStyle}
-        />
-        <MenuItem 
-          name='population'
-          active={mapFilter === 'population'}
-          onClick={() => setMapFilter('population')}
-          // style={FilterItemStyle}
-        />
-      </Menu>
+      
+      <Container>
+        <Grid>
+          <Grid.Row centered>
+            <Grid.Column width={12} textAlign='center'>
+              <Menu compact width={3} style={FilterMenuStyle}>
+                <MenuItem header>FILTER:</MenuItem>
+                <MenuItem
+                  name='geographic'
+                  active={mapFilter === 'geographic'}
+                  onClick={() => setMapFilter('geographic')}
+                />
+                <MenuItem 
+                  name='luxury'
+                  active={mapFilter === 'luxury'}
+                  onClick={() => setMapFilter('luxury')}
+                />
+                <MenuItem 
+                  name='population'
+                  active={mapFilter === 'population'}
+                  onClick={() => setMapFilter('population')}
+                />
+              </Menu>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
 
       <Button size='massive' style={GenerateButtonStyle}>
         Generate Map
