@@ -1,5 +1,5 @@
 import { Segment, Container, Grid, Menu, MenuItem, Button } from 'semantic-ui-react';
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const TitleStyle = {
@@ -31,7 +31,7 @@ const GenerateButtonStyle = {
 }
   
 
-export function App() {
+export function LandingPage() {
   const [mapFilter, setMapFilter] = useState('geographic');
   
   return (
@@ -50,7 +50,7 @@ export function App() {
             <Grid.Column width={12} textAlign='center'>
               <Menu compact width={3} style={FilterMenuStyle}>
                 <MenuItem header>FILTER:</MenuItem>
-                <MenuItem
+                <MenuItem id='asdasd'
                   name='geographic'
                   active={mapFilter === 'geographic'}
                   onClick={() => setMapFilter('geographic')}
@@ -71,11 +71,14 @@ export function App() {
         </Grid>
       </Container>
 
-      <Button size='massive' style={GenerateButtonStyle}>
-        Generate Map
-      </Button>
+      <Link to={`mapViewer/${mapFilter}`}>
+        <Button 
+          size='massive' 
+          style={GenerateButtonStyle}>
+          Generate Map
+        </Button>
+      </Link>
+      
     </>
   );
 }
-
-export default App;
