@@ -1,5 +1,5 @@
 import { Segment, Container, Grid, Menu, MenuItem, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const TitleStyle = {
@@ -33,6 +33,7 @@ const GenerateButtonStyle = {
 
 export function LandingPage() {
   const [mapFilter, setMapFilter] = useState('geographic');
+  const navigate = useNavigate();
   
   return (
     <>
@@ -44,11 +45,11 @@ export function LandingPage() {
         Mussum Ipsum, cacilds vidis litro abertis.  Casamentiss faiz malandris se pirulitá. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Per aumento de cachacis, eu reclamis. Quem num gosta di mim que vai caçá sua turmis!
       </Segment>
       
-      <Container>
+      <Container style={FilterMenuStyle}>
         <Grid>
           <Grid.Row centered>
             <Grid.Column width={12} textAlign='center'>
-              <Menu compact width={3} style={FilterMenuStyle}>
+              <Menu compact width={3}>
                 <MenuItem header>FILTER:</MenuItem>
                 <MenuItem id='asdasd'
                   name='geographic'
@@ -71,14 +72,12 @@ export function LandingPage() {
         </Grid>
       </Container>
 
-      <Link to={`mapViewer/${mapFilter}`}>
-        <Button 
-          size='massive' 
-          style={GenerateButtonStyle}>
-          Generate Map
-        </Button>
-      </Link>
-      
+      <Button 
+        size='massive' 
+        style={GenerateButtonStyle}
+        onClick={() => navigate(`mapViewer/${mapFilter}`)}>
+        Generate Map
+      </Button>      
     </>
   );
 }
