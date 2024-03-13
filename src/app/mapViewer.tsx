@@ -1,21 +1,30 @@
 import { mapDataGET } from 'src/api/requests'
-import { useLoaderData } from 'react-router-dom'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
 import { Segment } from 'semantic-ui-react';
+import { useEffect, useState } from 'react';
+import { MapType } from 'src/interfaces/MapType';
 
-export async function mapLoader() {
-    const response = await mapDataGET();
-    return { response };
+export async function mapLoader({ params }: LoaderFunctionArgs) {
+    return params.filter;
 }
 
 export function MapViewer() {
-    // const { mapData } = useLoaderData();
-    const blob = useLoaderData();
-    console.log('blob:', blob)
+    const filter = useLoaderData() as string;
+
+    const [mapData, setMapData] = useState<MapType>({});
+
+    useEffect(() => {
+        mapDataGET().then(data => { 
+            // debugging
+            console.log('data:', data)
+            setMapData(data); 
+        });
+    }, [])
 
     return (
         <>
             <Segment>
-                Test?
+                Current filter: {filter}
             </Segment>
         </>
     )
